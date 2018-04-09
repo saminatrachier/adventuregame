@@ -13,7 +13,7 @@ public class Collectable : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 	}
-
+	//bones are collected and displayed no matter what dog picks them up
 	void OnTriggerEnter2D (Collider2D other){
 		if (other.tag == "Player1") {
 			ScoreTextScript.boneAmount += 1;

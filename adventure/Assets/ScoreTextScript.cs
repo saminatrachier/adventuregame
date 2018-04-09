@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class ScoreTextScript : MonoBehaviour {
-
+	//bone UI stuff
 	Text text;
 	public static int boneAmount;
 	// Use this for initialization

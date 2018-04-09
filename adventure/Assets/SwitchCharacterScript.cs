@@ -11,7 +11,7 @@ public class SwitchCharacterScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-
+		//start as 'Marco'
 		avatar1.gameObject.SetActive (true);
 		avatar2.gameObject.SetActive (false);
 	}

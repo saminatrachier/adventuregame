@@ -5,12 +5,12 @@ using UnityEngine;
 public class MarcoMovement : MonoBehaviour {
 	public float xSpeed = 1f;
 	public float ySpeed = 10f;
-
+	//groundcheck
 	public Transform groundCheck;
 	public float groundCheckRadius;
 	public LayerMask whatIsGround;
 	private bool grounded;
-
+	//doublejump
 	private bool doubleJump;
 
 
@@ -30,25 +30,21 @@ public class MarcoMovement : MonoBehaviour {
 
 
 	}
-		
+		//groundcheck
 	void FixedUpdate (){
 		grounded = Physics2D.OverlapCircle (groundCheck.position, groundCheckRadius, whatIsGround);
 	}
 
 	// Update is called once per frame
 	void Update () {
+		//double-jump boolean
 		if (grounded) {
 			doubleJump = false;
 		}
 
 		if (Input.GetKey (KeyCode.LeftArrow)) {
-			//transform.position -= xSpeedTime.deltaTimeVector3.right;
-			// transform.position -= new Vector3(0.5f, 0, 0);
-			// transform.position = new Vector3(transform.position.x-0.5f, transform.position.y, transform.position.z);
-
-
-			//cameraObj.transform.position -= 5Time.deltaTimeVector3.up;
-
+			
+			//animations and sprites
 			anim.SetInteger ("MWalking", 1);
 
 			myRigidbody.velocity = new Vector2 (-xSpeed, myRigidbody.velocity.y);
@@ -76,7 +72,7 @@ public class MarcoMovement : MonoBehaviour {
 			anim.SetInteger ("MWalking", 2);
 				myRigidbody.velocity = new Vector2 (myRigidbody.velocity.x, ySpeed);
 			}
-
+		//doublejump enable
 		if (Input.GetKeyDown (KeyCode.Space) && !doubleJump && !grounded) {
 
 			anim.SetInteger ("MWalking", 2);
@@ -84,7 +80,7 @@ public class MarcoMovement : MonoBehaviour {
 			myRigidbody.velocity = new Vector2 (myRigidbody.velocity.x, ySpeed);
 			doubleJump = true;
 		}
-
+		//kill-key
 		if (Input.GetKeyDown(KeyCode.Escape)) {
 			Application.Quit();
 		}

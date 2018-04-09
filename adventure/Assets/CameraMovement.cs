@@ -10,7 +10,7 @@ public class CameraMovement : MonoBehaviour {
 	private Vector3 offset1, offset2;
 
 	void Start (){
-
+		//camera offset so it follows both the dogs
 		offset1 = transform.position - target1.transform.position;
 		offset2 = transform.position - target2.transform.position;
 

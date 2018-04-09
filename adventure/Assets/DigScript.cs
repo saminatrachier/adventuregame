@@ -16,7 +16,7 @@ public class DigScript : MonoBehaviour {
 	void Update () {
 		
 	}
-
+	//Polo's Destory/Dig Script on collision
 	void OnCollisionEnter2D(Collision2D other){
 		if (other.gameObject.tag == "Player2") {
 			Destroy (this.gameObject);

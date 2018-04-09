@@ -6,12 +6,12 @@ public class PoloMovement : MonoBehaviour {
 
 	public float xSpeed = 1f;
 	public float ySpeed = 10f;
-
+	//groundcheck 
 	public Transform groundCheck;
 	public float groundCheckRadius;
 	public LayerMask whatIsGround;
 	private bool grounded;
-
+	//audio sources
 	public AudioClip bark;
 	AudioSource audio;
 
@@ -33,29 +33,26 @@ public class PoloMovement : MonoBehaviour {
 	}
 
 	void FixedUpdate (){
+		//groundcheck
 		grounded = Physics2D.OverlapCircle (groundCheck.position, groundCheckRadius, whatIsGround);
 	}
 
 	// Update is called once per frame
 	void Update () {
+		//movement code
 		if (Input.GetKey(KeyCode.LeftArrow)) {
-			//transform.position -= xSpeedTime.deltaTimeVector3.right;
-			// transform.position -= new Vector3(0.5f, 0, 0);
-			// transform.position = new Vector3(transform.position.x-0.5f, transform.position.y, transform.position.z);
-
-
+			
 			//cameraObj.transform.position -= 5Time.deltaTimeVector3.up;
 
 			anim.SetInteger ("PoloWalk", 1);
 
-
+			//sprite-flip for walk anim.
 			myRigidbody.velocity = new Vector2(-xSpeed, myRigidbody.velocity.y);
 			mySpriteRenderer.flipX = true;
 
 
 		}
 		else if (Input.GetKey(KeyCode.RightArrow)) {
-			//transform.position += xSpeedTime.deltaTimeVector3.right;
 
 			anim.SetInteger ("PoloWalk", 1);
 
@@ -63,6 +60,7 @@ public class PoloMovement : MonoBehaviour {
 			mySpriteRenderer.flipX = false;
 
 		}
+		//idle animation 
 		else {
 			myRigidbody.velocity = new Vector2(0, myRigidbody.velocity.y);
 
@@ -74,7 +72,7 @@ public class PoloMovement : MonoBehaviour {
 
 		if (Input.GetKeyDown(KeyCode.Space)) {
 			anim.SetInteger ("PoloWalk", 2);
-
+			//no double-jump
 			if (grounded) {
 
 				audio.PlayOneShot (bark, .5f);
@@ -83,7 +81,7 @@ public class PoloMovement : MonoBehaviour {
 			}
 
 		}
-
+		//kill-key
 		if (Input.GetKeyDown(KeyCode.Escape)) {
 			Application.Quit();
 		}
