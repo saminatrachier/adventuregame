@@ -12,6 +12,9 @@ public class MarcoMovement : MonoBehaviour {
 	private bool grounded;
 	//doublejump
 	private bool doubleJump;
+	public AudioClip borf;
+	public AudioClip doubleBorf;
+	AudioSource audio;
 
 
 	public Animator anim;
@@ -26,6 +29,8 @@ public class MarcoMovement : MonoBehaviour {
 		mySpriteRenderer = GetComponent<SpriteRenderer> ();
 
 		anim = this.GetComponent<Animator> ();
+
+		audio = GetComponent<AudioSource> ();
 
 
 
@@ -67,15 +72,21 @@ public class MarcoMovement : MonoBehaviour {
 		}
 
 	
-			if (Input.GetKeyDown (KeyCode.Space) && grounded) {
+		if (Input.GetKeyDown (KeyCode.Space) && grounded) {
 
 			anim.SetInteger ("MWalking", 2);
-				myRigidbody.velocity = new Vector2 (myRigidbody.velocity.x, ySpeed);
-			}
+
+			audio.PlayOneShot (borf, .5f);
+
+			myRigidbody.velocity = new Vector2 (myRigidbody.velocity.x, ySpeed);
+		}
+
 		//doublejump enable
 		if (Input.GetKeyDown (KeyCode.Space) && !doubleJump && !grounded) {
 
 			anim.SetInteger ("MWalking", 2);
+
+			audio.PlayOneShot (doubleBorf, .5f);
 
 			myRigidbody.velocity = new Vector2 (myRigidbody.velocity.x, ySpeed);
 			doubleJump = true;
