@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class Collectable : MonoBehaviour {
 
+	public ParticleSystem shiny;
+
 	public AudioClip SoundEffect;
 	public AudioSource MusicSource;
 
@@ -16,12 +18,14 @@ public class Collectable : MonoBehaviour {
 	void OnTriggerEnter2D (Collider2D other){
 		if (other.tag == "Player1") {
 			ScoreTextScript.boneAmount += 1;
+			shiny.Play ();
 			Destroy (gameObject);
 
 			MusicSource.Play ();
 		}
 		if (other.tag == "Player2") {
 			ScoreTextScript.boneAmount += 1;
+			shiny.Play ();
 			Destroy (gameObject);
 
 			MusicSource.Play ();
